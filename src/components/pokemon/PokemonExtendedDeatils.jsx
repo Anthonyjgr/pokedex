@@ -13,7 +13,7 @@ const PokemonExtendedDeatils = ({ extendedDetails, color }) => {
       {/* Abilities Section */}
       <div className="flex flex-col items-center justify-start gap-4">
         {/* Section Title */}
-        <span className="text-gray-500 dark:text-gray-200 text-2xl">Abilities</span>
+        <span className="text-gray-500 dark:text-gray-200 md:text-2xl text-sm">Abilities</span>
 
         {/* Map through abilities array and display each ability name */}
         {extendedDetails?.abilities?.map((abi) => (
@@ -32,7 +32,7 @@ const PokemonExtendedDeatils = ({ extendedDetails, color }) => {
       {/* Growth Rate Section */}
       <div className="flex flex-col items-center justify-start gap-4">
         {/* Section Title */}
-        <span className="text-gray-500 dark:text-gray-200 text-2xl">Growth Rate</span>
+        <span className="text-gray-500 dark:text-gray-200 md:text-2xl text-sm">Growth Rate</span>
 
         {/* Display Growth Rate Value */}
         <span className={`${textColor} text-md text-center`}>
@@ -46,7 +46,7 @@ const PokemonExtendedDeatils = ({ extendedDetails, color }) => {
       {/* Habitat Section */}
       <div className="flex flex-col items-center justify-start gap-4">
         {/* Section Title */}
-        <span className="text-gray-500 dark:text-gray-200 text-2xl">Habitat</span>
+        <span className="text-gray-500 dark:text-gray-200 md:text-2xl text-sm">Habitat</span>
 
         {/* Display Habitat Value */}
         <span className={`${textColor} text-md text-center`}>
