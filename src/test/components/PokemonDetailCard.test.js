@@ -1,80 +1,14 @@
-// // src/test/components/PokemonDetailCard.test.js
-// import React from 'react';
-// import { render } from '@testing-library/react';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import PokemonDetailCard from '../../components/pokemon/PokemonDetailCard';
-// import rootReducer from '../../redux2/reducers/pokemonReducer'; // Asegúrate de que esta es la ruta correcta de tu reducer
-
-// // Estado inicial para el test
-// const initialState = {
-//     pokemon: {
-//         pokemons: [],  // Puedes añadir Pokémones si lo necesitas
-//         loading: false,
-//         error: null,
-//         FilteredPokemons: [],
-//         favorites: [],
-//         filterInput: "",
-//         filterSort: "lower",
-//         filterType: [],
-//         isDarkMode: "light", // o "dark", según necesites
-//     },
-//     ui: {
-//         isDarkMode: false, // o true, dependiendo de cómo desees que inicie tu test
-//     },
-// };
-
-// // Crear el store usando el estado inicial
-// const store = createStore(rootReducer, initialState);
-
-// // Datos de prueba para el Pokémon
-// const mockPokemon = {
-//     id: 1,
-//     name: 'bulbasaur',
-//     types: [{ type: { name: 'grass' } }, { type: { name: 'poison' } }],
-//     sprites: 'https://pokeapi.co/media/sprites/pokemon/1.png',
-//     weight: 69,
-//     height: 7,
-//     stats: [],
-// };
-
-// describe('PokemonDetailCard', () => {
-//     it('renders correctly with given pokemon data', () => {
-//         const { getByText, getByAltText } = render(
-//             <Provider store={store}>
-//                 <PokemonDetailCard pokemon={mockPokemon} />
-//             </Provider>
-//         );
-
-//         // Comprobar que el nombre se muestra correctamente
-//         expect(getByText(/bulbasaur/i)).toBeInTheDocument();
-
-//         // Comprobar que la id se muestra correctamente
-//         expect(getByText(/1/i)).toBeInTheDocument();
-
-//         // Comprobar que la imagen del Pokémon se carga
-//         const image = getByAltText(/image of bulbasaur/i);
-//         expect(image).toBeInTheDocument();
-//         expect(image).toHaveAttribute('src', 'https://pokeapi.co/media/sprites/pokemon/1.png');
-
-//         // Comprobar que los tipos de Pokémon se muestran
-//         expect(getByText(/grass/i)).toBeInTheDocument();
-//         expect(getByText(/poison/i)).toBeInTheDocument();
-//     });
-// });
-
-// src/test/components/PokemonDetailCard.test.js
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import PokemonDetailCard from '../../components/pokemon/PokemonDetailCard';
-import rootReducer from '../../redux2/reducers/pokemonReducer'; // Asegúrate de que esta es la ruta correcta de tu reducer
+import rootReducer from '../../redux2/reducers/pokemonReducer'; // Make sure this is the correct path to your reducer
 
-// Estado inicial para el test
+// Initial state for the test
 const initialState = {
     pokemon: {
-        pokemons: [],  // Puedes añadir Pokémones si lo necesitas
+        pokemons: [],  // You can add Pokémon here if needed
         loading: false,
         error: null,
         FilteredPokemons: [],
@@ -82,17 +16,17 @@ const initialState = {
         filterInput: "",
         filterSort: "lower",
         filterType: [],
-        isDarkMode: "light", // o "dark", según necesites
+        isDarkMode: "light", // or "dark", depending on your test requirements
     },
     ui: {
-        isDarkMode: false, // o true, dependiendo de cómo desees que inicie tu test
+        isDarkMode: false, // or true, depending on how you want your test to start
     },
 };
 
-// Crear el store usando el estado inicial
+// Create the store using the initial state
 const store = createStore(rootReducer, initialState);
 
-// Datos de prueba para el Pokémon
+// Test data for the Pokémon
 const mockPokemon = {
     id: 1,
     name: 'bulbasaur',
@@ -111,27 +45,27 @@ describe('PokemonDetailCard', () => {
             </Provider>
         );
 
-        // Comprobar que el nombre se muestra correctamente
+        // Check that the name is displayed correctly
         expect(getByText(/bulbasaur/i)).toBeInTheDocument();
 
-        // Comprobar que la id se muestra correctamente
+        // Check that the ID is displayed correctly
         expect(getByText(/1/i)).toBeInTheDocument();
 
-        // Comprobar que la imagen del Pokémon se carga
+        // Check that the Pokémon image loads
         const image = getByAltText(/image of bulbasaur/i);
         expect(image).toBeInTheDocument();
         expect(image).toHaveAttribute('src', 'https://pokeapi.co/media/sprites/pokemon/1.png');
 
-        // Comprobar que los tipos de Pokémon se muestran
+        // Check that the Pokémon types are displayed
         expect(getByText(/grass/i)).toBeInTheDocument();
         expect(getByText(/poison/i)).toBeInTheDocument();
     });
 
-    // Nuevo caso de prueba para manejo de errores
+    // New test case for error handling
     it('shows error message when no valid pokemon data is provided', () => {
         const { getByText } = render(
             <Provider store={store}>
-                <PokemonDetailCard pokemon={{}} /> {/* Pokémon sin tipos */}
+                <PokemonDetailCard pokemon={{}} /> {/* Pokémon with no types */}
             </Provider>
         );
 
@@ -141,7 +75,7 @@ describe('PokemonDetailCard', () => {
     it('shows error message when pokemon is undefined', () => {
         const { getByText } = render(
             <Provider store={store}>
-                <PokemonDetailCard pokemon={undefined} /> {/* Pokémon indefinido */}
+                <PokemonDetailCard pokemon={undefined} /> {/* Undefined Pokémon */}
             </Provider>
         );
 

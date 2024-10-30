@@ -11,7 +11,6 @@ const initialState = {
   filterInput: filters.input || "",
   filterSort: filters.sort || "lower", // valor predeterminado
   filterType: filters.type || pokemonFilterTypesList,
-  isDarkMode: "light",
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -70,18 +69,6 @@ const pokemonReducer = (state = initialState, action) => {
         filterSort: "lower",
         filterType: {},
       };
-
-    case "DARK-MODE": {
-      // Alternar el modo oscuro
-      const newDarkMode = state.isDarkMode === "light" ? "dark" : "light";
-      localStorage.setItem("theme", newDarkMode); // Guardar el tema en localStorage
-      document.documentElement.classList.toggle("dark", newDarkMode === "dark"); // Aplicar clase a HTML
-
-      return {
-        ...state,
-        isDarkMode: newDarkMode, // Actualiza el estado de isDarkMode
-      };
-    }
 
     case "TOGGLE_FAVORITE":
       console.log(action.payload);
