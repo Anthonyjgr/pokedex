@@ -1,25 +1,28 @@
+// Action creator to clear all filters
 export const clearFilters = () => {
   return {
-    type: "CLEAR-FILTERS",
+    type: "CLEAR-FILTERS", // Action type for clearing filters
   };
 };
 
+// Action creator to filter based on input and type
 export const filter = (input, filterType) => {
-  // Inicializa `filters` en localStorage si no existe o si tiene un formato inválido
-
+  // Initialize `filters` in localStorage if it does not exist or if it has an invalid format
   if ((input && filterType) || (filterType === "input" && input === "")) {
+    // Retrieve the existing filters from localStorage
     const storageFilters = localStorage.getItem("filters");
     const currentFilters = JSON.parse(storageFilters);
 
-    // Actualiza el filtro específico con el nuevo input
+    // Update the specific filter with the new input
     const updatedFilters = { ...currentFilters, [filterType]: input };
 
-    // Guarda el nuevo objeto de filtros en localStorage
+    // Save the updated filters object back to localStorage
     localStorage.setItem("filters", JSON.stringify(updatedFilters));
   }
 
+  // Return an action to filter with the current filters
   return {
     type: "FILTER",
-    payload: "", // Esto devuelve todos los filtros actuales
+    payload: "", // This returns all current filters (currently not utilizing `input`)
   };
 };

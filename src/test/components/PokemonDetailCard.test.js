@@ -16,7 +16,6 @@ const initialState = {
         filterInput: "",
         filterSort: "lower",
         filterType: [],
-        isDarkMode: "light", // or "dark", depending on your test requirements
     },
     ui: {
         isDarkMode: false, // or true, depending on how you want your test to start

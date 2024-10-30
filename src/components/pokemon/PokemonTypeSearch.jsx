@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   pokemonTypesList,
   whiteTextColors,
-  backgroundLightClasses,
 } from "../../utils/helpers";
 import { useDispatch } from "react-redux";
 import { filter } from "../../redux2/actions/filterActions";
-import SmallPokeball from "../common/SmallPokeball";
 
 const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
+  // Initialize `selectedTypes` from local storage or default it to an empty object
   const [selectedTypes, setSelectedTypes] = useState(() => {
     const filters = localStorage.getItem("filters");
     const parsedFilters = JSON.parse(filters);
@@ -17,6 +16,7 @@ const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
 
   const dispatch = useDispatch();
 
+  // Toggles the selection of a Pokémon type
   const handleToggleType = (type) => {
     setSelectedTypes((prevSelectedTypes) => ({
       ...prevSelectedTypes,
@@ -24,21 +24,20 @@ const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
     }));
   };
 
-  // Detecta cambios en resetFilters para reiniciar selectedTypes
+  // Resets `selectedTypes` when `resetTypes` is triggered
   useEffect(() => {
     if (resetTypes) {
       setSelectedTypes(
         pokemonTypesList.reduce((acc, type) => ({ ...acc, [type]: false }), {})
       );
-      setResetTypes(false); // Desactiva el reset una vez que se ha realizado
+      setResetTypes(false); // Disable reset after applying
     }
   }, [resetTypes, setResetTypes]);
 
-  // Sincronizar selectedTypes con el filtro de Redux
+  // Syncs `selectedTypes` with Redux filter whenever it changes
   useEffect(() => {
     dispatch(filter(selectedTypes, "types"));
   }, [dispatch, selectedTypes]);
-
 
   return (
     <aside
@@ -51,11 +50,14 @@ const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
       >
         Filter by Type
       </h2>
+
+      {/* Map through the list of Pokémon types to generate a button for each type */}
       <div className="flex flex-col items-start justify-start gap-2 w-full">
         {pokemonTypesList.map((type) => (
           <button
             key={type}
             type="button"
+            // Dynamically apply background and text color based on selection status
             className={`p-1 px-3 text-gray-500 rounded-lg text-[14px] w-full border dark:border-transparent  ${
               selectedTypes[type] ? `bg-${type}-light` : "bg-gray-50 dark:bg-gray-600"
             } ${
@@ -65,6 +67,7 @@ const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
             } hover:bg-red-500 dark:hover:bg-red-500 hover:text-gray-200`}
             onClick={() => handleToggleType(type)}
           >
+            {/* Capitalize the first letter of the type for display */}
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </button>
         ))}

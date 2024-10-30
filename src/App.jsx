@@ -42,7 +42,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen w-screen overflow-hidden items-center justify-start relative">
+    <div className="flex flex-col min-h-screen w-screen overflow-hidden items-center justify-start relative bg-gray-100 dark:bg-gray-900">
       {location.pathname !== "/" && <Header />}
       <main className="w-full ">
         {/* {loading && <p>Loading...</p>}

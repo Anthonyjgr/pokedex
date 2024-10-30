@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 
-// Carga diferida del componente Pokeball
+// Lazy loading of pokeball component
 const Pokeball = lazy(() => import("../components/common/Pokeball"));
 
 const Landing = () => {
@@ -13,8 +13,8 @@ const Landing = () => {
         className="absolute top-[80px] w-[300px] md:w-[400px]"
       />
       <div className="absolute bottom-0 w-full h-1/2 bg-white"></div>
-      {/* Suspense para manejar el lazy loading */}
-      <Suspense fallback={<img src="/pokeball-icon.svg" alt="pokemonball image" className="w-[500px] h-[500px]"/>}>
+      {/* Suspense for handling  lazy loading */}
+      <Suspense fallback={<span className="w-[500px] h-[500px] text-white">Loading...</span>}>
         <div className="scale-[90%] lg:scale-100">
           <Pokeball />
         </div>

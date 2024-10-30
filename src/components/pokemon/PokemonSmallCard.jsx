@@ -5,25 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { favPokemon } from "../../redux2/actions/pokemonActions";
 
 const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
+  // Retrieve the dark mode setting and favorites list from Redux
   const isDarkMode = useSelector((state) => state.ui.isDarkMode);
-  const favorites = useSelector((state) => state.pokemon.favorites); // Obtener favoritos
+  const favorites = useSelector((state) => state.pokemon.favorites); // Get list of favorite Pokemon
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isFavorite = favorites.some((poke) => poke.id === id); // Verificar si está en favoritos
+  // Check if the current Pokemon is in the user's favorites
+  const isFavorite = favorites.some((poke) => poke.id === id);
 
+  // Toggle favorite status for the Pokemon without navigating
   const handleFav = (e) => {
-    e.stopPropagation(); // Prevenir navegación al detalle del Pokémon
-    dispatch(favPokemon(id)); // Alternar favorito
+    e.stopPropagation(); // Prevent navigation to the Pokemon's detail page
+    dispatch(favPokemon(id)); // Toggle favorite status
   };
 
+  // Navigate to the Pokemon's detail page
   const handleNavigate = () => {
     navigate(`/pokemon-details/${id}`);
   };
 
-  // Selecciona la clase en función de `principalType`
-  const bgHoverColor = hoverClasses[principalType] || "hover:bg-gray-200"; // Clase por defecto si el tipo no coincide
+  // Select a hover color based on the Pokemon's principal type or use a default if not found
+  const bgHoverColor = hoverClasses[principalType] || "hover:bg-gray-200"; // Default class if type doesn't match
 
+  // Loader icon to display while the image is loading
   const loaderIcon = (
     <div
       role="status"
@@ -31,7 +37,7 @@ const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
     >
       <svg
         aria-hidden="true"
-        class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,19 +51,20 @@ const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   );
 
   return (
     <div
-      className={`flex-col-center p-4 rounded-lg gap-2 max-h-[300px] ${
+      className={`flex-col-center p-4 rounded-lg gap-2 h-[300px] ${
         isDarkMode ? "bg-gray-700" : "bg-white"
       } shadow-[rgba(0,_0,_0,_0.18)_0px_10px_25px_-13px]
        hover:cursor-pointer ${bgHoverColor} hover:scale-105 transition-all duration-200 ease-in-out`}
       key={id + name}
       onClick={handleNavigate}
     >
+      {/* Pokemon image section with loading state and favorite toggle */}
       <div className="flex items-center justify-center p-4 w-full h-full pt-10 rounded-lg dark:bg-gray-600 bg-gray-50 relative">
         {image.length < 0 ? (
           loaderIcon
@@ -70,18 +77,22 @@ const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
         )}
 
         <span className="text-sm absolute top-3 right-3 dark:text-gray-300 text-gray-500">
-          {"#" + id}
+          {"#" + id} {/* Display Pokemon ID */}
         </span>
         <img
-          src={isFavorite ? "/fav-red.svg" : "/fav-gray.svg"} // Cambia el icono según el estado
+          src={isFavorite ? "/fav-red.svg" : "/fav-gray.svg"} // Change icon based on favorite status
           alt={`Favorite icon for ${name}`}
           className="w-[20px] h-[20px] absolute top-3 left-3 dark:text-gray-300 text-gray-500"
-          onClick={handleFav}
+          onClick={handleFav} // Toggle favorite status on click
         />
       </div>
+
+      {/* Pokemon name */}
       <span className="font-semibold text-gray-500 dark:text-gray-300">
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </span>
+
+      {/* Pokemon type badges */}
       <div className="flex-row-center gap-2">
         {types?.map((t) => (
           <div

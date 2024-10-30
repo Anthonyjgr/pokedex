@@ -1,77 +1,35 @@
-import axios from "axios";
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 
 const API_BASE_URL = "https://pokeapi.co/api/v2/";
 
-// export const fetchPokemons = async (page = 1) => {
-//   const response = await axios.get(
-//     `${API_BASE_URL}pokemon?limit=20&offset=${(page - 1) * 20}`
-//   );
-//   const pokeList = response.data.results;
+/**
+ * Fetches the evolution chain details for a given Pokémon ID.
+ * @param {number} id - The ID of the Pokémon to fetch evolution details for.
+ * @returns {Object} An object containing abilities, habitat, and growth rate of the Pokémon.
+ */
 
-//   const pokeDetailFecth = pokeList.map(async (poke) => {
-//     const pokeDetails = await axios.get(poke.url);
-//     const pokemon = pokeDetails.data;
-//     // console.log(pokemon)
-//     return {
-//       id: pokemon.id,
-//       name: pokemon.name,
-//       stats: pokemon.stats,
-//       types: pokemon.types,
-//       sprites: pokemon.sprites.other.dream_world.front_default,
-//       weight: pokemon.weight,
-//       height: pokemon.height,
-//       abilities: pokemon.abilities,
+export const fetchPokemonMoreDetails = async (id) => {
+  // Initialize an object to hold details about the Pokémon
+  let details = {};
 
-//     };
-//   });
+  try {
+    // Step 1: Fetch Pokémon details to get abilities
+    const pokemonResponse = await axios.get(`${API_BASE_URL}pokemon/${id}/`);
+    const { abilities } = pokemonResponse.data; // Destructure abilities from the response
+    details.abilities = abilities;
 
-//   // console.log(await Promise.all(pokeDetailFecth))
-//   return await Promise.all(pokeDetailFecth);
-// };
+    // Step 2: Fetch Pokémon species details to get habitat and growth rate
+    const speciesResponse = await axios.get(`${API_BASE_URL}pokemon-species/${id}/`);
+    const { habitat, growth_rate } = speciesResponse.data; // Destructure habitat and growth rate
+    details.habitat = habitat;
+    details.growth_rate = growth_rate;
 
-
-// src/services/pokemonService.js
-
-
-
-export const fetchPokemons = createAsyncThunk(
-  'pokemon/fetchPokemons',
-  async (page = 1, thunkAPI) => {
-    try {
-      const response = await axios.get(
-        `${API_BASE_URL}pokemon?limit=20&offset=${(page - 1) * 20}`
-      );
-      const pokeList = response.data.results;
-      
-      const pokeDetailsFetch = pokeList.map(async (poke) => {
-        const pokeDetails = await axios.get(poke.url);
-        const pokemon = pokeDetails.data;
-        return {
-          id: pokemon.id,
-          name: pokemon.name,
-          stats: pokemon.stats,
-          types: pokemon.types,
-          sprites: pokemon.sprites.other.dream_world.front_default,
-          weight: pokemon.weight,
-          height: pokemon.height,
-          abilities: pokemon.abilities,
-        };
-      });
-
-      const pokemons=  await Promise.all(pokeDetailsFetch);
-      // console.log(pokemons)
-      return pokemons
-    } catch (error) {
-      console.error("Error fetching pokemons:", error); // Añadir esta línea
-      return thunkAPI.rejectWithValue(error.message);
-    }
+  } catch (error) {
+    // Log any errors encountered during the API calls
+    console.error('Error fetching Pokémon details:', error);
+    return {}; // Return an empty object in case of an error
   }
-);
 
-
-
-
-
-
+  // Return the collected details
+  return details;
+};

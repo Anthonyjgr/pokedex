@@ -7,6 +7,7 @@ export default {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Para manejar módulos CSS
     '\\.png$': '<rootDir>/__mocks__/fileMock.js',
+    '\\.(png|jpg|jpeg|gif|svg)$': 'test-file-stub',
   },
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'], // Archivo para configuraciones globales de prueba
 

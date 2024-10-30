@@ -35,24 +35,37 @@ function PokemonDimensions({ weight, height, textColor, isDark }) {
   );
 
   return (
-    <div className="flex-row-center h-[80px] gap-4">
-      <div className="flex-col-center gap-4">
-        <div className="flex-row-center gap-2">
-          {weightIcon}
-          <span className="text-gray-500 dark:text-gray-200">{weightInKg + " Kg"}</span>
-        </div>
-        <span className={`${textColor} text-xs text-center`}>Weight</span>
-      </div>
-      {/* DIVISION LINE */}
-      <div className="h-full w-[1px] bg-gray-300"></div>
-      <div className="flex-col-center gap-4">
-        <div className="flex-row-center gap-2">
-          {ruleIcon}
-          <span className="text-gray-500 dark:text-gray-200">{heightInMeters + " m"}</span>
-        </div>
-        <span className={`${textColor} text-xs text-center`}>Weight</span>
-      </div>
+<div className="flex-row-center h-[80px] gap-4">
+  {/* Container for Weight Information */}
+  <div className="flex-col-center gap-4">
+    {/* Display Weight Icon and Value */}
+    <div className="flex-row-center gap-2">
+      {weightIcon}
+      <span className="text-gray-500 dark:text-gray-200">
+        {weightInKg + " Kg"} {/* Show weight in kilograms */}
+      </span>
     </div>
+    {/* Label for Weight */}
+    <span className={`${textColor} text-xs text-center`}>Weight</span>
+  </div>
+
+  {/* Divider Line between Weight and Height Information */}
+  <div className="h-full w-[1px] bg-gray-300"></div>
+
+  {/* Container for Height Information */}
+  <div className="flex-col-center gap-4">
+    {/* Display Height Icon and Value */}
+    <div className="flex-row-center gap-2">
+      {ruleIcon}
+      <span className="text-gray-500 dark:text-gray-200">
+        {heightInMeters + " m"} {/* Show height in meters */}
+      </span>
+    </div>
+    {/* Label for Height */}
+    <span className={`${textColor} text-xs text-center`}>Height</span>
+  </div>
+</div>
+
   );
 }
 

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleTheme } from '../../redux2/actions/uiActions'
 
 const ToggleButton = () => {
-  // Obtén el valor de `isDarkMode` directamente desde Redux.
+  // getting the value of isDarkMode from the ui reducer
   const isDarkMode = useSelector((state) => state.ui.isDarkMode);
 
   const dispatch = useDispatch();
 
-  // Maneja el cambio en el estado del tema
+  // handle the change of the dark mode state, toggleTheme sets the classList in the HTML to DARK or quit it. For more details see uiActions file.
   const handleCheckboxChange = () => {
     dispatch(toggleTheme());
   };
