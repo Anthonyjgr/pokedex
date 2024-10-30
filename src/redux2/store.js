@@ -2,6 +2,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import pokemonReducer from './reducers/pokemonReducer';
 import uiReducer from './reducers/uiReducer';
+// import  thunk  from 'redux-thunk';
 import { thunk } from 'redux-thunk';
 
 

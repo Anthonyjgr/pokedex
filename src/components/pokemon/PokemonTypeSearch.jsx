@@ -62,7 +62,7 @@ const PokemonTypeSearch = ({ resetTypes, setResetTypes }) => {
               selectedTypes[type] && whiteTextColors.includes(type)
                 ? "text-white"
                 : "text-black dark:text-gray-300"
-            } hover:bg-red-500 dark:hover:bg-red-500`}
+            } hover:bg-red-500 dark:hover:bg-red-500 hover:text-gray-200`}
             onClick={() => handleToggleType(type)}
           >
             {type.charAt(0).toUpperCase() + type.slice(1)}

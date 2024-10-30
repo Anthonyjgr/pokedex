@@ -75,6 +75,7 @@ const Home = ({ pokemons }) => {
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
               {currentPokemons?.map((poke) => (
                 <PokemonSmallCard
+                  key={poke?.id} 
                   image={poke?.sprites}
                   id={poke?.id}
                   types={poke?.types}
