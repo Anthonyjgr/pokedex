@@ -1,3 +1,4 @@
+import React from "react";
 import PokemonStats from "../common/PokemonStats";
 import {  textClasses } from "../../utils/helpers";
 import PokemonDimensions from "./PokemonDimensions";
@@ -5,27 +6,27 @@ import { useSelector } from "react-redux";
 
 const PokemonDetailCard = ({pokemon}) => {
 
-  const isDarkMode = useSelector((state) => state.ui.isDarkMode)
-  const poke = pokemon 
+  const isDarkMode = useSelector((state) => state.ui.isDarkMode);
+  const poke = pokemon;
 
   function capitalizeFirstLetter(str) {
     if (!str) return ""; // Handle empty string
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  // Check for valid Pokemon data
+  if (!poke || !poke.types || poke.types.length === 0) {
+    return <div>Failed to get Pokémon data</div>;
+  }
+
   //getting the type of pkemon
-  const pokeType = poke?.types[0].type?.name;
+  const pokeType = poke.types[0].type.name;
   //getting the types of pkemon to iterate later easely
-  const pokeTypes = poke?.types;
-  //the poke type is related to the poke color, we instance "pokeType" here in "pokeColor" just for better code understanding (see tailwind config file)
+  const pokeTypes = poke.types;
   const pokeColor = pokeType;
 
   const textColor = textClasses[pokeType] || "text-gray-200";
-  const isNormal = pokeType === "normal"
-  // console.log(pokeColor)
 
-
-  // console.log(pokeColor);
   return (
     <div
       className={`flex flex-col p-2 w-full max-w-[360px] bg-${pokeColor}-light relative rounded-lg`}
@@ -53,10 +54,11 @@ const PokemonDetailCard = ({pokemon}) => {
         draggable={false}
       />
       {/* POKE DETAILS CONTAINER */}
+
       <div
         className={`fex flex-col items-center justify-center p-4 mt-[200px] bg-${
           isDarkMode ? pokeColor + "-dark" : "white"
-        } rounded-lg `}
+        } rounded-lg ${isDarkMode && pokeColor === "normal" ? "bg-[#1b1b1b]" : ""}`}
       >
         {/* POKE TYPES */}
         <div className="flex flex-row gap-6 items-center justify-center mt-10">

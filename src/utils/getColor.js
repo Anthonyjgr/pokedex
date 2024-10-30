@@ -9,7 +9,7 @@ const tailwindColors = {
   flying: '#A891EC',
   ghost: '#70559B',
   grass: '#74CB48',
-  normal: '#AAA67F',
+  normal: '#888888',
   ground: '#DEC16B',
   ice: '#9AD6DF',
   poison: '#A43E9E',

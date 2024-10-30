@@ -66,10 +66,10 @@ module.exports = {
           'text-dark': '#203913',
         },
         normal: {
-          light: '#b1b1b1',
-          dark: '#500000',
-          'text-light': '#b1b1b1',
-          'text-dark': '#373737',
+          light: '#b3b3b3',
+          dark: '#1b1b1b',
+          'text-light': '#b3b3b3',
+          'text-dark': '#1b1b1b',
         },
         ground: {
           light: '#DEC16B',

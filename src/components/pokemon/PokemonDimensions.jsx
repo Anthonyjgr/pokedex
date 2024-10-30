@@ -47,7 +47,7 @@ function PokemonDimensions({ weight, height, textColor, isDark }) {
       <div className="h-full w-[1px] bg-gray-300"></div>
       <div className="flex-col-center gap-4">
         <div className="flex-row-center gap-2">
-          {weightIcon}
+          {ruleIcon}
           <span className="text-gray-500 dark:text-gray-200">{heightInMeters + " m"}</span>
         </div>
         <span className={`${textColor} text-xs text-center`}>Weight</span>

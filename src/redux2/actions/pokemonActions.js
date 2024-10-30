@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://pokeapi.co/api/v2/";
-import icon from "/pokeball-color-icon.svg"
+import icon from "/pokeball-icon.png"
 
 export const fetchPokemons = () => async (dispatch) => {
   dispatch({ type: "FETCH_POKEMONS_REQUEST" });

@@ -59,7 +59,7 @@ const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
       onClick={handleNavigate}
     >
       <div className="flex items-center justify-center p-4 w-full h-full pt-10 rounded-lg dark:bg-gray-600 bg-gray-50 relative">
-        {image.legth < 0 ? (
+        {image.length < 0 ? (
           loaderIcon
         ) : (
           <img
