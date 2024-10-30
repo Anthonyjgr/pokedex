@@ -32,6 +32,7 @@ This project is a React application that consumes the public Pokémon API ([Poke
 - **Axios**: For making HTTP requests to the API.
 - **Tailwind CSS**: For styling the application.
 - **Jest & React Testing Library**: For unit testing components.
+- **Vercel**: For deployent.
 
 ## Getting Started
 
@@ -40,6 +41,10 @@ Follow these instructions to set up and run the application locally:
 ### Prerequisites
 
 Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Deployment URL
+
+deplyment URL https://pokedex-lyart-six.vercel.app/
 
 ### Installation
 
