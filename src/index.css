@@ -1,0 +1,33 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+*{
+  @apply transition-colors duration-200
+}
+
+.flex-row-center {
+  @apply flex flex-row items-center justify-center;
+}
+
+.flex-col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+#search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
