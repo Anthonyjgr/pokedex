@@ -15,7 +15,14 @@ import Landing from "./pages/Landing";
 function App() {
   const dispatch = useDispatch();
   const { loading, error, FilteredPokemons } = useSelector((state) => state.pokemon);
-  const location = useLocation()
+  const location = useLocation();
+
+  const isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
+  if (isDarkMode) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
 
   if (!localStorage.getItem("filters")) {
     localStorage.setItem(
@@ -32,11 +39,10 @@ function App() {
     dispatch(fetchPokemons()).then(() => {
       dispatch(filter());
     });
-
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen w-screen overflow-hidden items-center justify-start">
+    <div className="flex flex-col min-h-screen w-screen overflow-hidden items-center justify-start relative">
       {location.pathname !== "/" && <Header />}
       <main className="w-full ">
         {/* {loading && <p>Loading...</p>}

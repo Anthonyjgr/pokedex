@@ -56,7 +56,7 @@ const PokemonDetailCard = ({pokemon}) => {
       <div
         className={`fex flex-col items-center justify-center p-4 mt-[200px] bg-${
           isDarkMode ? pokeColor + "-dark" : "white"
-        } rounded-lg ${isDarkMode && isDarkMode ? "bg-gray-700" : ""}`}
+        } rounded-lg `}
       >
         {/* POKE TYPES */}
         <div className="flex flex-row gap-6 items-center justify-center mt-10">

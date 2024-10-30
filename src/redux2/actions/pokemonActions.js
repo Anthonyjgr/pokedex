@@ -9,7 +9,7 @@ export const fetchPokemons = () => async (dispatch) => {
   try {
     const allPokemons = [];
     let offset = 0;
-    const limit = 100; // Límite de Pokémon por solicitud
+    const limit = 300; // Límite de Pokémon por solicitud
     let keepFetching = true;
 
     while (keepFetching) {

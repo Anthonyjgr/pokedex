@@ -27,7 +27,7 @@ const PokemonSmallCard = ({ image, id, types, name, principalType }) => {
   // console.log(types[0].type.name);
   return (
     <div
-      className={`flex-col-center p-4 rounded-lg gap-2 ${
+      className={`flex-col-center p-4 rounded-lg gap-2 max-h-[300px] ${
         isDarkMode ? "bg-gray-700" : "bg-white"
       } shadow-[rgba(0,_0,_0,_0.18)_0px_10px_25px_-13px]
        hover:cursor-pointer ${bgHoverColor} hover:scale-105 transition-all duration-200 ease-in-out`}

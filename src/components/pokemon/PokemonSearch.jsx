@@ -42,15 +42,15 @@ const SerchBar = () => {
             type="search" // Semánticamente correcto para búsquedas
             onChange={handleInputChange}
             value={inputData}
-            placeholder="Search by name or ID"
-            className="rounded-lg text-md p-2 w-full shadow-md h-[40px] md:h-[50px] "
+            placeholder="Search by Name or ID"
+            className="rounded-lg text-md p-2 w-full shadow-md h-[40px] md:h-[50px] dark:bg-gray-700"
           />
           {/* CLEAN INPUT BUTTON */}
           <button className="absolute flex items-center justify-center right-1 top-1/2 trnasform -translate-y-1/2 cursor-pointer  w-[40px] h-[40px]">
             <img
               src="/close.svg"
               alt="close icon"
-              className="h-[15px] hover:scale-125 transition-all duration-300 ease-in-out"
+              className="h-[15px] hover:scale-125 transition-all duration-300 ease-in-out "
               onClick={handleCleanInput}
             />
           </button>
@@ -58,10 +58,10 @@ const SerchBar = () => {
         {/* SEARCH BUTTON */}
         <button
           type="submit"
-          className="rounded-lg ml-2 bg-white p-2 h-[40px] md:h-[50px] shadow-md flex items-center justify-center"
+          className="rounded-lg ml-2 bg-white dark:bg-gray-700 p-2 h-[40px] md:h-[50px] shadow-md flex items-center justify-center"
           aria-label="Search"
         >
-          <img src="/search.svg" alt="search icon" className="w-[30px] h-[30px]"
+          <img src="/search.svg" alt="search icon" className="w-[30px] h-[30px] dark:bg-gray-700"
           />
         </button>
       </form>

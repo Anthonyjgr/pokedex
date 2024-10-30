@@ -6,9 +6,10 @@ import { useSelector } from "react-redux";
 import Pagination from "../components/pokemon/Pagination";
 import SmallPokeball from "../components/common/SmallPokeball";
 import { Link } from "react-router-dom";
+import Loader from "../components/common/Loader";
 
 const Home = ({ pokemons }) => {
-  const loading = useSelector((state)=> state.pokemon.loading)
+  const loading = useSelector((state) => state.pokemon.loading);
   const isDarkMode = useSelector((state) => state.ui.isDarkMode);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -33,16 +34,8 @@ const Home = ({ pokemons }) => {
     setOpenMenu(!openMenu);
   };
 
-// console.log(loading)
   if (loading) {
-    return (
-      <div
-        role="status"
-        className="w-screen h-screen flex items-center justify-center"
-      >
-        <span className="text-2xl">Loading...</span>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -64,7 +57,7 @@ const Home = ({ pokemons }) => {
             <img src="/open-icon.svg" alt="open menu icon" className="w-6" />
           </button>
           {openMenu ? (
-            <div className="flex lg:hidden absolute top-0 w-full z-30">
+            <div className="flex lg:hidden absolute top-[-20px] w-full z-30">
               <PokemonFilters handleOpen={handleOpen} />
             </div>
           ) : (
@@ -79,7 +72,7 @@ const Home = ({ pokemons }) => {
         </div>
         <div className="flex-col-center md:w-[82%]">
           {currentPokemons.length > 0 ? (
-            <div className="w-full  grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
               {currentPokemons?.map((poke) => (
                 <PokemonSmallCard
                   image={poke?.sprites}
