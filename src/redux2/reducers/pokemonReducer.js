@@ -38,8 +38,13 @@ const pokemonReducer = (state = initialState, action) => {
       let filteredPokemons = state.pokemons; // Start with the complete list of Pokémon
 
       // Filter by input (name or ID)
-      if (filterInput) {
+      if (filterInput && filterTypes.length > 0) {
         filteredPokemons = filteredPokemons.filter(
+          (poke) =>
+            poke.name.includes(filterInput) || poke.id.toString().includes(filterInput)
+        );
+      }else if (filterInput){
+        filteredPokemons = state.pokemons.filter(
           (poke) =>
             poke.name.includes(filterInput) || poke.id.toString().includes(filterInput)
         );
